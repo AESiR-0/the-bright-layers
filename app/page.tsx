@@ -2,7 +2,9 @@ import Navbar from "@/components/sections/Navbar";
 import Hero from "@/components/sections/Hero";
 import Banner from "@/components/sections/Banner";
 import About from "@/components/sections/About";
-import Accordion from "@/components/sections/Accordion";
+import AccordionMain from "@/components/sections/Accordion";
+import {CarouselSize} from "@/components/sections/Carousel";
+import Footer from "@/components/sections/Footer";
 export default function Home() {
   return (
     <>
@@ -11,7 +13,9 @@ export default function Home() {
         <Navbar />
         <Hero />
         <About />
-        <Accordion />
+        <AccordionMain />
+        <CarouselSize />
+        <Footer />
       </div>
     </>
   );
