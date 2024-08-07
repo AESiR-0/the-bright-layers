@@ -18,10 +18,9 @@ export default function Hero() {
                     </div>
                 </div>
                 <div className="w-1/2 max-md:w-full max-md:px-0 max flex justify-end relative ">
-                    <Image src={overlayImage} alt="overlay" className='absolute  max-md:hidden left-12 top-20' height={350} width={350} />
-                    <Image src={heroImage} className='max-md:w-full ' alt="hero" height={600} width={450} />
+                    <Image src={overlayImage} alt="overlay" className='absolute  max-md:hidden left-12 top-20' height={400} width={350} />
+                    <Image src={heroImage} className='max-md:w-full ' alt="hero" height={600} width={550} />
                     <Image src={overlayImage} alt="overlay" className='absolute max-md:hidden left-64 top-48' height={200} width={200} />
-
                 </div>
             </div>
         </>
