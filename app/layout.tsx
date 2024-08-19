@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import localFont from 'next/font/local'
 import "./globals.css";
+import Navbar from "@/components/sections/Navbar";
+import Banner from "@/components/sections/Banner";
+import Footer from "@/components/sections/Footer";
+
 
 const garet = localFont({
   src:[
@@ -26,7 +30,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={garet.className}>{children}</body>
+      <body className={garet.className}>
+      <Banner />
+      <Navbar />
+        {children}
+
+        </body>
+        <footer>
+        <Footer />
+        </footer>
+          
+        
     </html>
   );
 }
