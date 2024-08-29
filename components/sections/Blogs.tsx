@@ -10,7 +10,7 @@ export default function Blogs() {
       <div className="flex justify-center  gap-y-8 lg:gap-y-0 flex-wrap md:flex-wrap lg:flex-nowrap lg:flex-row lg:justify-between lg:gap-x-8">
 
       {Array.from({ length: 3 }).map((_, index) => (
-        <div className="group w-full px-6 max-lg:max-w-xl lg:w-1/3 border border-gray-300 rounded-2xl">
+        <div key={index} className="group w-full px-6 max-lg:max-w-xl lg:w-1/3 border border-gray-300 rounded-2xl">
          <div className="flex w-full  items-center">
              <Image src="/static/bg.jpg" width={512} height={128} alt="blogs tailwind section" className="rounded-t-2xl w-full" />
          </div>

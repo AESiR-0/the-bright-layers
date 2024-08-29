@@ -33,8 +33,9 @@ export default function RootLayout({
       <body className={garet.className}>
       <Banner />
       <Navbar />
+      <div className="overflow-x-hidden">
         {children}
-
+      </div>
         </body>
         <footer>
         <Footer />

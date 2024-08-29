@@ -1,5 +1,5 @@
 import Image from "next/image";
-import vercel from "@/public/vercel.svg";
+import logo from "@/public/static/logo/logo.png";
 import Link from "next/link";
 
 const socialLinks = [
@@ -31,7 +31,7 @@ export default function Footer() {
         ))}
       </div>
       <div className="">
-        <Image alt="logo" height={256} width={256} src={vercel} />
+        <Image alt="logo" height={256} width={256} src={logo} />
       </div>
       <div className="list-none text-center">
         <li className="text-accent py-1">Navigate</li>

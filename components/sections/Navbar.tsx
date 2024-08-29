@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import logo from "@/public/vercel.svg";
+import logo from "@/public/static/logo/logo.png";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 
@@ -16,7 +16,7 @@ const navItems = [
   },
   {
     title: "Service",
-    link: "/service",
+    link: "/services",
   },
   {
     title: "Blog",
@@ -40,13 +40,13 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="w-screen items-center flex justify-between overflow-hidden px-5 md:px-20 h-20 bg-seconday-2">
+      <div className="w-screen items-center flex justify-between overflow-hidden px-5 md:px-20 h-20 bg-seconday-2">
         <div className="flex items-center justify-between w-full md:w-auto">
           <Image
             alt="The Bright Layers Logo"
             src={logo}
-            width={128}
-            height={128}
+            width={64}
+            height={64}
           />
           <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
             <svg
@@ -109,7 +109,7 @@ export default function Navbar() {
             );
           })}
         </div>
-      </nav>
+      </div>
     </>
   );
 }
