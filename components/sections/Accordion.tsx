@@ -16,9 +16,9 @@ interface AccordionItemProps {
 
 const contentJson = [
   {
-    title: "Strategy Development",
+    title: "Social media marketing",
     content:
-      "You can't just post on social media and call it good anymore. An effective content media strategy tells a story and brings your brand to life. We dig deep into your current situation and help you build a strategy that's aligned to your business and delivers ROI.",
+      "Just like algorithms, we are also continually evolving with the social media landscape – and you get to make the most of it. From scouting trends to launching campaigns, our tailored strategy attuned to your brand, will help you cut through the noise & stand out!",
   },
   {
     title: "Content Creation",
@@ -64,7 +64,7 @@ const AccordionMain: React.FC = () => {
           {contentJson.map((item, index) => {
             return (
               <AccordionSet
-              key={index}
+                key={index}
                 title="Strategy Development"
                 content="You can't just post on social media and call it good anymore. An effective content media strategy tells a story and brings your brand to life. We dig deep into your current situation and help you build a strategy that's aligned to your business and delivers ROI."
               />
