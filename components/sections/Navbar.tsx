@@ -40,7 +40,7 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="w-screen items-center flex justify-between overflow-hidden px-5 md:px-20 h-20 bg-seconday-2">
+      <div className="w-screen items-center flex justify-between overflow-hidden px-5 md:px-20 h-20 bg-secondary">
         <div className="flex items-center justify-between w-full md:w-auto">
           <Image
             alt="The Bright Layers Logo"
@@ -71,12 +71,12 @@ export default function Navbar() {
                   <Link
                     key={index}
                     className={`group transition-all ${
-                      item.link === pathName ? "text-accent" : "text-secondary"
+                      item.link === pathName ? "text-accent" : "text-white"
                     }`}
                     href={item.link}
                   >
                     {item.title}
-                    <div className="bg-secondary scale-x-0 h-[2px] w-full group-hover:scale-x-100 transition-all duration-300"></div>
+                    <div className="bg-white scale-x-0 h-[2px] w-full group-hover:scale-x-100 transition-all duration-300"></div>
                   </Link>
                 );
               })}
@@ -84,7 +84,7 @@ export default function Navbar() {
           )}
         </div>
         <div
-          className={`hidden md:flex-row md:flex font-sans text-lg text-secondary gap-10 ${
+          className={`hidden md:flex-row md:flex font-sans text-lg text-white gap-10 ${
             isOpen ? "flex" : "hidden"
           } md:flex`}
         >
@@ -93,7 +93,7 @@ export default function Navbar() {
               <Link
                 key={index}
                 className={`group transition-all  ${
-                  item.link === pathName ? "text-accent" : "text-secondary"
+                  item.link === pathName ? "text-accent" : "text-white"
                 }`}
                 href={item.link}
               >
@@ -102,7 +102,7 @@ export default function Navbar() {
                   className={`${
                     item.link === pathName
                       ? "bg-accent scale-x-100 group-hover:scale-x-0 "
-                      : "scale-x-0 group-hover:scale-x-100 bg-secondary "
+                      : "scale-x-0 group-hover:scale-x-100 bg-white "
                   }  h-[2px] w-full  transition-all duration-300`}
                 ></div>
               </Link>

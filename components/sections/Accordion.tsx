@@ -16,29 +16,29 @@ interface AccordionItemProps {
 
 const contentJson = [
   {
-    title: "Social media marketing",
+    title: "What is a social media agency, and why do I need one?",
     content:
-      "Just like algorithms, we are also continually evolving with the social media landscape – and you get to make the most of it. From scouting trends to launching campaigns, our tailored strategy attuned to your brand, will help you cut through the noise & stand out!",
+      "A social media agency like The Bright Layers helps businesses build their brand presence on social media platforms through tailored strategies. We handle everything from branding to paid advertisements, ensuring your brand is consistently visible, engaging, and optimized for growth. You need a social media agency to cut through the digital noise and effectively connect with your target audience.",
   },
   {
-    title: "Content Creation",
+    title: "What platforms do you specialize in?",
     content:
-      "We create engaging and high-quality content that resonates with your audience and drives engagement. Our team of experts ensures that your content is not only visually appealing but also strategically aligned with your marketing goals.",
+      "We specialize in Instagram, Facebook, YouTube, and LinkedIn, ensuring your brand reaches its audience on the most effective channels. Whether it's building your brand presence or running paid ads, we've got you covered across all major social media platforms.",
   },
   {
-    title: "Social Media Management",
+    title: "How will I know my brand is reaching digital success?",
     content:
-      "Our social media management services help you maintain a strong and consistent presence on social media platforms. We handle everything from content planning and creation to posting and engagement, ensuring your brand stays top-of-mind with your audience.",
+      "We measure success through detailed data analysis and reporting. We track metrics like engagement, reach, impressions, and ROI. Based on this, we optimize future campaigns to ensure ongoing success and improved performance.",
   },
   {
-    title: "Social Media Management",
+    title: "How quickly can I expect results? ",
     content:
-      "Our social media management services help you maintain a strong and consistent presence on social media platforms. We handle everything from content planning and creation to posting and engagement, ensuring your brand stays top-of-mind with your audience.",
+      "Social media marketing is a long-term investment. While paid ads can bring immediate results in terms of reach and conversions, organic growth may take time to build momentum. Typically, you can expect to see noticeable results in 3-6 months, depending on your goals and strategy.",
   },
   {
-    title: "Social Media Management",
+    title: "Do you offer branding services?",
     content:
-      "Our social media management services help you maintain a strong and consistent presence on social media platforms. We handle everything from content planning and creation to posting and engagement, ensuring your brand stays top-of-mind with your audience.",
+      "Yes, we provide comprehensive branding services. Whether you're starting from scratch or need to reimagine your brand, we help create brand guidelines, design assets, and execute content that truly represents your brand's essence.",
   },
 ];
 
@@ -58,15 +58,19 @@ const AccordionSet = ({ title, content }: AccordionItemProps) => {
 const AccordionMain: React.FC = () => {
   return (
     <section className="container h-screen py-20 flex gap-10 justify-center">
-      <div className="w-1/2 flex flex-col justify-center items-start ">
-        <h2 className="text-6xl font-serif mb-8">Our Services</h2>
+      <div className="w-[55%]  flex flex-col justify-center items-start ">
+        <h2 className="text-6xl font-serif mb-4 ">FAQs</h2>
+        <p className="w-full mb-4">
+          If we haven't covered something here, feel free to shoot us an email
+          with your query!
+        </p>
         <div className="border-t w-full border-gray-300">
           {contentJson.map((item, index) => {
             return (
               <AccordionSet
                 key={index}
-                title="Strategy Development"
-                content="You can't just post on social media and call it good anymore. An effective content media strategy tells a story and brings your brand to life. We dig deep into your current situation and help you build a strategy that's aligned to your business and delivers ROI."
+                title={item.title}
+                content={item.content}
               />
             );
           })}
