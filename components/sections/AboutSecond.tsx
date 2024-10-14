@@ -12,7 +12,7 @@ const MarketingSection: React.FC = () => {
           </p>
 
           <p className="w-[800px] text-center">
-            Our approach is different – a boutique-style agency that prioritizes
+            Our approach is different - a boutique-style agency that prioritizes
             understanding our clients as intimately as our own business. This
             approach has not only made us experts in our field but has allowed
             us to build genuine partnerships. <br />

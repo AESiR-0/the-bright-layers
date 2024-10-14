@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const FounderSection: React.FC = () => {
   return (
@@ -11,12 +11,20 @@ const FounderSection: React.FC = () => {
             className="w-full h-auto"
           />
         </div>
-        <div className="md:w-1/3 text-center px-4">
-          <h3 className="text-lg italic mb-2">Meet our</h3>
+        <div className="md:w-[45%] text-center px-4">
+          <h3 className="text-lg italic mb-2">Say Hi! To the </h3>
           <h2 className="text-3xl font-bold mb-4">FOUNDER</h2>
-          <p className="mb-4">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae accusantium ipsam provident sapiente voluptatum distinctio aspernatur numquam corporis, voluptatem sed cum tempore aliquid totam recusandae corrupti eum est rerum nisi commodi. Ipsam nihil possimus perferendis molestiae explicabo quas molestias maxime, voluptatum doloremque porro rerum sunt. Et tenetur aut omnis minima. Reiciendis laboriosam obcaecati dignissimos magni nesciunt illo ducimus molestias harum mollitia. Enim eos illo quasi, velit quibusdam debitis sed incidunt doloribus fuga quam cum eligendi neque iure non quaerat deserunt.
-             </p>
+          <p className="mb-4 ">
+            Full time overthinker and part time Founder, Pooja Bhadoriya
+            launched The Bright Layers in 2019 as a tribute to her experience of
+            working in social media - be it as a designer, writer, creative
+            director, or just as a consultant to her uncle who really wanted his
+            mithai business to go viral on Instagram. As a business owner
+            herself, she understands the passion that fuels a brand. Her goal is
+            to bring that passion to the forefront, and to make businesses feel
+            more human. Oh also, she's really excited to meet you, fellow
+            business-owner.
+          </p>
         </div>
         <div className="md:w-1/3 mb-8 md:mb-0">
           <img
