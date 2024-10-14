@@ -24,7 +24,7 @@ export default function Footer() {
         {socialLinks.map((link, index) => (
           <li
             key={index}
-            className="text-decoration-none underline underline-offset-2 py-1 hover:text-accent transition-colors text-secondary-4"
+            className="text-decoration-none underline underline-offset-2 py-1 hover:text-accent transition-colors text-white"
           >
             <Link href={link.link}>{link.title}</Link>
           </li>
@@ -38,7 +38,7 @@ export default function Footer() {
         {navigation.map((link, index) => (
           <li
             key={index}
-            className="text-decoration-none underline underline-offset-2 py-1 hover:text-accent transition-colors text-secondary-4"
+            className="text-decoration-none underline underline-offset-2 py-1 hover:text-accent transition-colors text-white"
           >
             <Link href={link.link}>{link.title}</Link>
           </li>
