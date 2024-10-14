@@ -5,7 +5,7 @@ import SecondaryButton from '../SecondaryButton'
 
 export default function About() {
   return (
-    <div className="h-[85vh] bg-secondary flex flex-col items-center justify-center"> <div className="container mx-auto px-20 flex flex-col md:flex-row items-center">
+    <div className="h-[85vh] bg-secondary  flex flex-col items-center justify-center"> <div className="container mx-auto px-20 flex flex-col md:flex-row items-center">
     <div className="md:w-1/2 mb-8 md:mb-0">
       <Image src={"./vercel.svg"} alt="GIF of services " height={512} width={512} /> 
     </div>
