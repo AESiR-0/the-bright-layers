@@ -39,7 +39,7 @@ export default function Services() {
             onMouseLeave={() => setHoveredIndex(-1)}
           >
             <div className="flex-grow flex items-center justify-center">
-              <h2 className="text-xl text-white text-center">{service.title}</h2>
+              <h2 className="text-xl text-white text-center px-2">{service.title}</h2>
             </div>
             {hoveredIndex === index && (
               <div className="absolute h-full flex items-center justify-center text-center bottom-0 left-0 right-0 p-4 bg-white opacity-90 transition-opacity duration-300">

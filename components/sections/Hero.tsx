@@ -18,8 +18,7 @@ export default function Hero() {
               creativity, innovation, and strategy at your digital doorstep
             </p>
             <div className="flex justify-start w-[400px] max-md:w-full">
-              <button className="text-center w-[200px] bg-none border max-md:w-full max-md:px-2 border-seconday-2 text-accent text-xl h-10 rounded-lg hover:border-none hover:bg-accent hover:text-white transition-all">
-                {" "}
+              <button className="text-center w-[200px] bg-none border max-md:w-full max-md:px-2 border-secondary text-black text-xl h-10 rounded-lg hover:border-none hover:bg-secondary hover:text-white transition-all">
                 <Link href={"/services"}>See our Services </Link>
               </button>
             </div>
