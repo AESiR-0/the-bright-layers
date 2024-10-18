@@ -84,7 +84,7 @@ export default function Navbar() {
           )}
         </div>
         <div
-          className={`hidden md:flex-row md:flex font-sans text-lg text-white gap-10 ${
+          className={`hidden md:flex-row md:flex font-sans text-lg text-secondary gap-10 ${
             isOpen ? "flex" : "hidden"
           } md:flex`}
         >
@@ -102,7 +102,7 @@ export default function Navbar() {
                   className={`${
                     item.link === pathName
                       ? "bg-accent scale-x-100 group-hover:scale-x-0 "
-                      : "scale-x-0 group-hover:scale-x-100 bg-white "
+                      : "scale-x-0 group-hover:scale-x-100 bg-white  "
                   }  h-[2px] w-full  transition-all duration-300`}
                 ></div>
               </Link>

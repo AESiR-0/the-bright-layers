@@ -38,8 +38,8 @@ const config = {
         secondary: "#313e51",
         "seconday-2": "#C6ACA8",
         "secondary-3": "#546660",
-        "secondary-4": "#3E4044",
-        accent: "#DA5428",
+        "secondary-4": "#D0D4D8",
+        accent: "#FFFFFF",
       },
       backgroundImage: {
         bg : "url('/static/home/bg.jpg')",
