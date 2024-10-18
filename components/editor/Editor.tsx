@@ -48,8 +48,7 @@ export default function EditorComp() {
         </EditorContent>
       </EditorRoot>
       <button className="w-full my-20" onClick={handlePost}>
-        {" "}
-        Submit{" "}
+        Submit
       </button>
     </div>
   );
