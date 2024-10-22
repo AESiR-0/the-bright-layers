@@ -71,12 +71,12 @@ export default function Navbar() {
                   <Link
                     key={index}
                     className={`group transition-all ${
-                      item.link === pathName ? "text-accent" : "text-white"
+                      item.link === pathName ? "text-orange-500" : "text-white"
                     }`}
                     href={item.link}
                   >
                     {item.title}
-                    <div className="bg-white scale-x-0 h-[2px] w-full group-hover:scale-x-100 transition-all duration-300"></div>
+                    <div className="bg-orange-500 scale-x-0 h-[2px] w-full group-hover:scale-x-100 transition-all duration-300"></div>
                   </Link>
                 );
               })}
@@ -93,7 +93,7 @@ export default function Navbar() {
               <Link
                 key={index}
                 className={`group transition-all  ${
-                  item.link === pathName ? "text-accent" : "text-white"
+                  item.link === pathName ? "text-orange-500" : "text-white"
                 }`}
                 href={item.link}
               >
@@ -101,7 +101,7 @@ export default function Navbar() {
                 <div
                   className={`${
                     item.link === pathName
-                      ? "bg-accent scale-x-100 group-hover:scale-x-0 "
+                      ? "bg-orange-500 scale-x-100 group-hover:scale-x-0 "
                       : "scale-x-0 group-hover:scale-x-100 bg-white  "
                   }  h-[2px] w-full  transition-all duration-300`}
                 ></div>

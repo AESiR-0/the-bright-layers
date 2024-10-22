@@ -5,12 +5,7 @@ import HTMLReactParser from "html-react-parser";
 import axios from "axios";
 import React, { useState, useRef } from "react";
 import {
-  EditorBubble,
-  EditorBubbleItem,
-  EditorCommand,
-  EditorCommandItem,
-  EditorContent,
-  EditorRoot,
+Editor
 } from "novel";
 export default function EditorComp() {
   async function handlePost(e: object) {
@@ -33,20 +28,7 @@ export default function EditorComp() {
   console.log("====================================");
   return (
     <div>
-      <EditorRoot>
-        <EditorContent>
-          <EditorCommand>
-            <EditorCommandItem />
-            <EditorCommandItem />
-            <EditorCommandItem />
-          </EditorCommand>
-          <EditorBubble>
-            <EditorBubbleItem />
-            <EditorBubbleItem />
-            <EditorBubbleItem />
-          </EditorBubble>
-        </EditorContent>
-      </EditorRoot>
+      <Editor></Editor>
       <button className="w-full my-20" onClick={handlePost}>
         Submit
       </button>
