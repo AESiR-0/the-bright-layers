@@ -27,7 +27,7 @@ const ContactForm: React.FC = () => {
         Contact
       </p>
       <h3 className="text-3xl sm:text-4xl leading-normal font-extrabold tracking-tight text-gray-900">
-        Get In <span className="text-accent">Touch</span>
+        Get In <span className="text-secondary">Touch</span>
       </h3>
   </div>
   
@@ -74,7 +74,7 @@ const ContactForm: React.FC = () => {
           </span>
         </label>
       </div>
-      <button className="shadow bg-accent hover:bg-orange-600 transition-all hover:scale-105 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-6 rounded" type="submit">
+      <button className="shadow mt-2 bg-secondary hover:text-secondary hover:bg-white transition-all hover:scale-x-95 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-6 rounded" type="submit">
         Send Message
       </button>
     </div>
