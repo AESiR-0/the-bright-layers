@@ -4,14 +4,16 @@
 import HTMLReactParser from "html-react-parser";
 import axios from "axios";
 import React, { useState, useRef } from "react";
-import {
-  EditorBubble,
-  EditorBubbleItem,
-  EditorCommand,
-  EditorCommandItem,
-  EditorContent,
-  EditorRoot,
-} from "novel";
+// import {
+//   EditorBubble,
+//   EditorBubbleItem,
+//   EditorCommand,
+//   EditorCommandItem,
+//   EditorContent,
+//   EditorRoot,
+// } from "novel";
+
+import {EditorIn} from "novel";
 export default function EditorComp() {
   async function handlePost(e: object) {
     const res = await axios.post("/blog/create", { html: content });
@@ -35,16 +37,8 @@ export default function EditorComp() {
     <div>
       <EditorRoot>
         <EditorContent>
-          <EditorCommand>
-            <EditorCommandItem />
-            <EditorCommandItem />
-            <EditorCommandItem />
-          </EditorCommand>
-          <EditorBubble>
-            <EditorBubbleItem />
-            <EditorBubbleItem />
-            <EditorBubbleItem />
-          </EditorBubble>
+          <EditorCommand></EditorCommand>
+          <EditorBubble></EditorBubble>
         </EditorContent>
       </EditorRoot>
       <button className="w-full my-20" onClick={handlePost}>
