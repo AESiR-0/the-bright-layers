@@ -6,3 +6,8 @@
 :root{
     overflow-x: hidden;
 }
+
+*::selection{
+    background-color: #EF613A;
+    color: white
+}
