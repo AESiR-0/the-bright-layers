@@ -8,12 +8,12 @@ import Blogs from "@/components/sections/Blogs";
 export default function Home() {
   return (
     <div>
-      <Hero />
-      <About />
-      <AccordionMain />
-      <CarouselSize />
-      <Services />
-      <Blogs />
+        <Hero />
+        <About />
+        <AccordionMain />
+        <CarouselSize />
+        <Services />
+        <Blogs />
     </div>
   );
 }

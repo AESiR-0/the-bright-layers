@@ -87,7 +87,7 @@ const ServicesSection: React.FC = () => {
             </div>
 
             {/* Service Content */}
-            <div className="w-full md:w-5/12 flex flex-col text-left">
+            <div className="w-full md:w-5/12 flex flex-col max-md:text-center text-left">
               <Fade triggerOnce cascade>
                 <p className="my-4 md:my-8 text-lg sm:text-xl">{service.content}</p>
               </Fade>

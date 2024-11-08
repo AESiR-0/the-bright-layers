@@ -31,7 +31,7 @@ const contentJson = [
       "We measure success through detailed data analysis and reporting. We track metrics like engagement, reach, impressions, and ROI. Based on this, we optimize future campaigns to ensure ongoing success and improved performance.",
   },
   {
-    title: "How quickly can I expect results? ",
+    title: "How quickly can I expect results?",
     content:
       "Social media marketing is a long-term investment. While paid ads can bring immediate results in terms of reach and conversions, organic growth may take time to build momentum. Typically, you can expect to see noticeable results in 3-6 months, depending on your goals and strategy.",
   },
@@ -57,10 +57,13 @@ const AccordionSet = ({ title, content }: AccordionItemProps) => {
 
 const AccordionMain: React.FC = () => {
   return (
-    <section className="container h-screen py-20 flex gap-10 justify-center">
-      <div className="w-[55%]  flex flex-col justify-center items-start ">
-        <h2 className="text-6xl font-serif mb-4 ">FAQs</h2>
-        <p className="w-full mb-4">
+    <section className="container py-20 flex gap-10 justify-center flex-col lg:flex-row">
+      {/* FAQ Section */}
+      <div className="w-full lg:w-[55%] flex flex-col justify-center items-start">
+        <h2 className="text-4xl w-full sm:text-left  lg:text-6xl font-serif mb-4 text-center">
+          FAQs
+        </h2>
+        <p className="text-lg mb-4 text-center lg:text-left">
           If we haven't covered something here, feel free to shoot us an email
           with your query!
         </p>
@@ -76,8 +79,15 @@ const AccordionMain: React.FC = () => {
           })}
         </div>
       </div>
-      <div className="w-1/3 h-full border border-red-200">
-        <Image alt="Image " src={vercel} objectFit="cover" />
+
+      {/* Image Section */}
+      <div className="w-full max-md:hidden lg:w-1/3 h-full flex justify-center items-center">
+        <Image
+          alt="Image"
+          src={vercel}
+          layout="intrinsic"
+          className="w-full max-w-[300px] lg:max-w-none object-cover"
+        />
       </div>
     </section>
   );
