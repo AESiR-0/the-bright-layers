@@ -1,6 +1,5 @@
 "use client";
-// import ReactQuill from "react-quill";
-// import "react-quill/dist/quill.snow.css";
+
 import axios from "axios";
 import React, { useState, useRef } from "react";
 import {
@@ -8,7 +7,11 @@ import {
 } from "novel";
 export default function EditorComp() {
   async function handlePost(e: object) {
-    const res = await axios.post("/blog/create", { html: content });
+    const res = await axios.post("/blog/create", {
+      headers: {
+        'Content-Type': 'application/json'
+      }, html: content
+    });
     console.log(await res, "res");
 
   }
@@ -23,8 +26,8 @@ export default function EditorComp() {
           Title
         </label>
         <input onChange={(e) => {
-            
-      }}
+
+        }}
           className="appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" />
       </div>
 
