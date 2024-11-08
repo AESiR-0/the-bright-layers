@@ -25,13 +25,13 @@ export default function CTA() {
             </div>
 
             {/* Call to Action Buttons */}
-            <div className="bg-accent  w-full py-10 md:h-[35vh]">
+            <div className="bg-accent  w-full py-10 md:h-[55vh]">
                 <div className="flex flex-col md:flex-row justify-center items-center -mt-24 w-full max-w-6xl mx-auto">
                     {/* Button 1 */}
                     <div
                         onMouseEnter={() => setHover(true)}
                         onMouseLeave={() => setHover(false)}
-                        className="bg-gray-900 max-md:hidden text-accent hover:bg-orange-500 shadow-sm justify-center items-center gap-5 hover:shadow-xl hover:scale-[1.01] duration-500 flex flex-col ease-in transition-all w-full md:w-1/2 p-6"
+                        className="bg-gray-900 max-md:hidden hover:cursor-pointer text-accent hover:bg-orange-500 shadow-sm justify-center items-center gap-5 hover:shadow-xl hover:scale-[1.01] duration-500 flex flex-col ease-in transition-all w-full md:w-1/2 p-6"
                     >
                         <h6 className={`text-sm ${hover ? 'text-black' : 'text-orange-500'} text-center uppercase`}>
                             Tea or Coffee?
