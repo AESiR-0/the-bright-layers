@@ -1,3 +1,4 @@
+'use client'
 import React, { useState } from 'react';
 interface obj {
     title: string;
@@ -34,13 +35,12 @@ const Modal = ({ data, setHandler }: {
 };
 export function ModalButton({ text, data, }: { text: string; data: obj; }) {
     const [openModal, setModal] = useState(false);
-    const handleModal = (e: any) => {
-        e.prevent.default()
+    const handleModal = () => {
         setModal(!openModal)
     }
     return (
         <>
-            <button onClick={handleModal}>{text}</button>
+            <button onClick={() => handleModal}>{text}</button>
             {openModal && (
                 <>
                     <Modal data={data} setHandler={setModal} key={data.title} />

@@ -9,7 +9,7 @@ export default function page() {
       <Hero />
       <ServiceSection />
       <ServiceCards />
-
+      
     </div>
   )
 }
