@@ -7,13 +7,13 @@ import Blogs from "@/components/sections/Blogs";
 
 export default function Home() {
   return (
-    <>
-        <Hero />
-        <About />
-        <AccordionMain />
-        <CarouselSize />
-        <Services />
-        <Blogs />
-    </>
+    <div>
+      <Hero />
+      <About />
+      <AccordionMain />
+      <CarouselSize />
+      <Services />
+      <Blogs />
+    </div>
   );
 }

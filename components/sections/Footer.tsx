@@ -18,7 +18,7 @@ const navigation = [
 
 export default function Footer() {
   return (
-    <footer className="w-full h-80 bg-secondary items-center flex justify-around">
+    <div className="w-full h-80 bg-secondary items-center flex justify-around">
       <div className="list-none text-center">
         <li className="text-accent py-1">Social</li>
         {socialLinks.map((link, index) => (
@@ -44,6 +44,6 @@ export default function Footer() {
           </li>
         ))}
       </div>
-    </footer>
+    </div>
   );
 }

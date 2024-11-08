@@ -1,6 +1,7 @@
+'use client'
 import { ModalButton } from "@/components/Modal";
-import { title } from "process";
 import React from "react";
+import { Slide, Fade, Reveal } from "react-awesome-reveal";
 
 const ServicesData = [
   {
@@ -36,7 +37,7 @@ const ServicesData = [
   {
     number: "03.",
     title: "Social media advertisements",
-    content: `Convert, don't confuse – that's our strategy with paid ads. If we're putting money on your brand, we'll make sure it's worth it.
+    content: `Convert, don't confuse - that's our strategy with paid ads. If we're putting money on your brand, we'll make sure it's worth it.
 `, items: ["Meta ads",
       "Budget optimisation",
       "Campaign execution",
@@ -66,18 +67,35 @@ const ServicesData = [
 
 const ServicesSection: React.FC = () => {
   return (
-    <div className="flex-col flex  w-screen">
+    <div className="flex-col flex py-10  w-screen">
       {ServicesData.map((service) => (
-        <>
-          <div className="flex items-center  h-[30vh] w-full px-10 ">
-            <div className="text-orange-500 w-[5%] ">{service.number}</div>
-            <div className="text-4xl text-center leading-tight w-1/2 px-32  font-bold">
-              {service.title}
+        <div>
+          <div className="flex items-center  h-[30vh] w-full px-20 ">
+            <div className="text-orange-500 w-[5%] ">
+              <Fade triggerOnce>
+                {service.number}</Fade></div>
+            <div className="text-4xl text-primary text-center leading-tight w-1/2 px-32  font-bold">
+              <Slide direction="up" triggerOnce>
+
+                {service.title}
+              </Slide>
             </div>
-            <div className="w-1/2">{service.content}</div>
-            <div className=""><ModalButton text="Read More" data={{ title: service.title, bullets: service.items, content: service.content }} key={service.number} /></div>
+            <div className="w-1/2  flex text-left flex-col ">
+              <Fade triggerOnce cascade>
+                <p className="my-10">
+                  {service.content}
+                </p>
+
+
+              </Fade>
+              <div className="">
+                <ModalButton text="Read More" data={{ title: service.title, bullets: service.items, content: service.content }} key={service.number} />
+              </div>
+
+
+            </div>
           </div>
-        </>
+        </div>
       ))}
     </div>
   );
