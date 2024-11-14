@@ -1,0 +1,72 @@
+// pages/blog.tsx
+import { GetStaticProps } from "next";
+import { graphQLClient } from "@/lib/blog-client";
+import { GET_BLOG_POSTS } from "@/lib/graphql";
+
+// Define types for the post data
+type Post = {
+  id: string;
+  title: string;
+  content: string;
+  date: string;
+  author: {
+    node: {
+      name: string;
+    };
+  };
+  categories: {
+    nodes: {
+      name: string;
+    }[];
+  };
+  tags: {
+    nodes: {
+      name: string;
+    }[];
+  };
+  featuredImage?: {
+    node: {
+      sourceUrl: string;
+    };
+  };
+};
+
+type BlogProps = {
+  posts: Post[];
+};
+
+export const getStaticProps: GetStaticProps<BlogProps> = async () => {
+  try {
+    const data = await graphQLClient.request(GET_BLOG_POSTS, { first: 5 });
+    return {
+      props: {
+        posts: data.posts.nodes,
+      },
+      revalidate: 10, // Revalidate at most every 10 seconds
+    };
+  } catch (error) {
+    console.error("Error fetching blog posts:", error);
+    return {
+      notFound: true,
+    };
+  }
+};
+
+const Blog: React.FC<BlogProps> = ({ posts }) => (
+  <div>
+    <h1>Blog Posts</h1>
+    {posts.map((post) => (
+      <article key={post.id}>
+        <h2>{post.title}</h2>
+        <div dangerouslySetInnerHTML={{ __html: post.content }} />
+        <p>Author: {post.author.node.name}</p>
+        <p>Date: {new Date(post.date).toLocaleDateString()}</p>
+        {post.featuredImage && (
+          <img src={post.featuredImage.node.sourceUrl} alt={post.title} />
+        )}
+      </article>
+    ))}
+  </div>
+);
+
+export default Blog;

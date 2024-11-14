@@ -34,6 +34,7 @@ const config = {
       },
       fontFamily: {
         quicksand: ["Quicksand", "sans-serif"],
+        womby : ["Womby", "Helvetica-Nue", "Helvetica", "Arial", "sans-serif"],
       },
       colors: {
         primary: "#2C3E50",

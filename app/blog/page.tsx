@@ -1,18 +1,23 @@
-'use client'
-import React from 'react'
-import axios from 'axios'
+// app/blog/page.tsx
+import { fetchBlogPosts } from "@/lib/blog-client";
 
-export default function page() {
-  const blog = { key: 'value', prat: 'value', }
-  async function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
-    e.preventDefault();
-    //  await axios.post('/blog/create', blog)
-  }
+type BlogPost = {
+  id: string;
+  title: string;
+};
+
+export default async function BlogPage() {
+  // Fetch blog posts directly in the component
+  const posts: BlogPost[] = await fetchBlogPosts(5); // Fetch the first 5 blog posts
 
   return (
-    <div className='w-full h-full flex justify-center items-center'>
-      <button className='w-20 h-20 bg-accent'
-        onClick={handleClick}>Click</button>
+    <div>
+      <h1>Blog Titles</h1>
+      <ul>
+        {posts.map((post) => (
+          <li key={post.id}>{post.title}</li>
+        ))}
+      </ul>
     </div>
-  )
+  );
 }
