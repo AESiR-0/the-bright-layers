@@ -32,6 +32,9 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      fontFamily: {
+        quicksand: ["Quicksand", "sans-serif"],
+      },
       colors: {
         primary: "#2C3E50",
         "primary-2": "#313e51",
