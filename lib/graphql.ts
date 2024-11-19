@@ -12,16 +12,6 @@ export const GET_BLOG_POSTS = `
             name
           }
         }
-        categories {
-          nodes {
-            name
-          }
-        }
-        tags {
-          nodes {
-            name
-          }
-        }
         featuredImage {
           node {
             sourceUrl

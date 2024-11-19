@@ -1,23 +1,10 @@
-// app/blog/page.tsx
-import { fetchBlogPosts } from "@/lib/blog-client";
+import React from "react";
+import BlogList from "@/components/sections/blogs/BlogList";
 
-type BlogPost = {
-  id: string;
-  title: string;
-};
-
-export default async function BlogPage() {
-  // Fetch blog posts directly in the component
-  const posts: BlogPost[] = await fetchBlogPosts(5); // Fetch the first 5 blog posts
-
+export default function page() {
   return (
     <div>
-      <h1>Blog Titles</h1>
-      <ul>
-        {posts.map((post) => (
-          <li key={post.id}>{post.title}</li>
-        ))}
-      </ul>
+      <BlogList />:
     </div>
   );
 }
