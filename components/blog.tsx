@@ -1,3 +1,6 @@
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { GetStaticProps } from "next";
 
 // GraphQL query
@@ -56,7 +59,7 @@ export const getStaticProps: GetStaticProps<BlogProps> = async () => {
       },
       body: JSON.stringify({
         query: GET_BLOG_POSTS,
-        variables: { first: 5 },
+        variables: { first: 3 }, // Limit to 3 posts for the blog section
       }),
     });
 
@@ -85,21 +88,55 @@ export const getStaticProps: GetStaticProps<BlogProps> = async () => {
   }
 };
 
-const Blog: React.FC<BlogProps> = ({ posts }) => (
-  <div>
-    <h1>Blog Posts</h1>
-    {posts.map((post) => (
-      <article key={post.id}>
-        <h2>{post.title}</h2>
-        <div dangerouslySetInnerHTML={{ __html: post.content }} />
-        <p>Author: {post.author.node.name}</p>
-        <p>Date: {new Date(post.date).toLocaleDateString()}</p>
-        {post.featuredImage && (
-          <img src={post.featuredImage.node.sourceUrl} alt={post.title} />
-        )}
-      </article>
-    ))}
-  </div>
-);
+const Blogs: React.FC<BlogProps> = ({ posts }) => {
+  return (
+    <section className="py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h2 className="font-manrope text-4xl font-bold text-gray-900 text-center mb-16">
+          Our Latest Blog
+        </h2>
+        <div className="flex justify-center gap-y-8 lg:gap-y-0 flex-wrap md:flex-wrap lg:flex-nowrap lg:flex-row lg:justify-between lg:gap-x-8">
+          {posts.map((post) => (
+            <div
+              key={post.id}
+              className="group w-full px-6 max-lg:max-w-xl lg:w-1/3 border border-gray-300 rounded-2xl"
+            >
+              <div className="flex w-full items-center">
+                {post.featuredImage && (
+                  <Image
+                    src={post.featuredImage.node.sourceUrl}
+                    width={512}
+                    height={128}
+                    alt={post.title}
+                    className="rounded-t-2xl w-full"
+                  />
+                )}
+              </div>
+              <div className="block">
+                <h4 className="text-gray-900 font-medium leading-8 mb-9">
+                  {post.title}
+                </h4>
+                <div className="flex items-center justify-between font-medium">
+                  <h6 className="text-sm text-gray-500">
+                    By {post.author.node.name}
+                  </h6>
+                  <span className="text-sm text-indigo-600">
+                    {new Date(post.date).toLocaleDateString()}
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <Link
+          href="/blogs"
+          className="cursor-pointer border mt-10 border-gray-300 shadow-sm rounded-full py-3.5 px-7 w-52 flex justify-center items-center text-gray-900 font-semibold mx-auto transition-all duration-300 hover:bg-gray-100"
+        >
+          View All
+        </Link>
+      </div>
+    </section>
+  );
+};
 
-export default Blog;
+export default Blogs;

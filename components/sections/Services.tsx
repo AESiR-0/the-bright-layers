@@ -1,5 +1,6 @@
 "use client";
-import React, { useState } from "react";
+
+import React from "react";
 
 const services = [
   {
@@ -29,32 +30,34 @@ const services = [
   },
 ];
 
-export default function Services() {
-  const [hoveredIndex, setHoveredIndex] = useState(-1);
-
+const Services = () => {
   return (
-    <div className="flex flex-col justify-center items-center py-10">
-      <h1 className="text-center font-serif text-5xl mb-8">Our Services</h1>
-      <div className="flex flex-wrap justify-center gap-10">
-        {services.map((service, index) => (
-          <div
-            key={index}
-            className="relative flex flex-col items-center justify-center w-full md:w-1/2 lg:w-1/4 h-64 bg-secondary transition-all duration-300 rounded-lg overflow-hidden cursor-pointer transform hover:scale-105"
-            onMouseEnter={() => setHoveredIndex(index)}
-            onMouseLeave={() => setHoveredIndex(-1)}
-          >
-            <div className="flex-grow flex items-center justify-center px-4 py-2">
-              <h2 className="text-white text-xl font-semibold">{service.title}</h2>
+    <div className="bg-[#313e51] py-20 px-6">
+      <div className="max-w-screen-xl mx-auto text-center text-white">
+        <h2 className="text-4xl sm:text-5xl font-extrabold mb-12">
+          Our Professional Services
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 items-center justify-center lg:grid-cols-3 gap-12">
+          {services.map((service, index) => (
+            <div
+              key={index}
+              className="bg-white text-black p-8 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:scale-105 hover:translate-y-1"
+            >
+              <h3 className="text-2xl font-semibold text-primary mb-4">
+                {service.title}
+              </h3>
+              <p className="text-md leading-relaxed mb-6">
+                {service.description}
+              </p>
+              <button className="text-primary font-semibold border border-primary px-6 py-3 rounded-full hover:bg-primary hover:text-white transition duration-300 ease-in-out">
+                Learn More
+              </button>
             </div>
-
-            {hoveredIndex === index && (
-              <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-90 p-4 text-black text-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                <p>{service.description}</p>
-              </div>
-            )}
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
-}
+};
+
+export default Services;
