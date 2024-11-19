@@ -1,9 +1,29 @@
-// pages/blog.tsx
 import { GetStaticProps } from "next";
-import { graphQLClient } from "@/lib/blog-client";
-import { GET_BLOG_POSTS } from "@/lib/graphql";
 
-// Define types for the post data
+// GraphQL query
+const GET_BLOG_POSTS = `
+  query GetBlogPosts($first: Int!) {
+    posts(first: $first) {
+      nodes {
+        id
+        title
+        content
+        date
+        author {
+          node {
+            name
+          }
+        }
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+      }
+    }
+  }
+`;
+
 type Post = {
   id: string;
   title: string;
@@ -13,16 +33,6 @@ type Post = {
     node: {
       name: string;
     };
-  };
-  categories: {
-    nodes: {
-      name: string;
-    }[];
-  };
-  tags: {
-    nodes: {
-      name: string;
-    }[];
   };
   featuredImage?: {
     node: {
@@ -36,8 +46,31 @@ type BlogProps = {
 };
 
 export const getStaticProps: GetStaticProps<BlogProps> = async () => {
+  const GRAPHQL_ENDPOINT = "https://thebrightlayers.com/graphql";
+
   try {
-    const data = await graphQLClient.request(GET_BLOG_POSTS, { first: 5 });
+    const response = await fetch(GRAPHQL_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        query: GET_BLOG_POSTS,
+        variables: { first: 5 },
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const { data, errors } = await response.json();
+
+    if (errors) {
+      console.error("GraphQL errors:", errors);
+      throw new Error("Failed to fetch GraphQL data");
+    }
+
     return {
       props: {
         posts: data.posts.nodes,
