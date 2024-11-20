@@ -3,24 +3,28 @@
 import { fetchBlogPosts } from "@/lib/blog-client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+
 type Author = {
   node: {
     name: string;
   };
 };
-type featuredImage = {
+
+type FeaturedImage = {
   node: {
     sourceUrl: string;
   };
 };
+
 type BlogPost = {
   id: string;
   title: string;
   content: string;
   date: string;
   author: Author;
-  featuredImageUrl: featuredImage | null; // URL of the featured image
+  featuredImageUrl: FeaturedImage | null; // URL of the featured image
 };
+
 function formatDate(dateString: string): string {
   const date = new Date(dateString);
   const day = date.getDate();
@@ -42,6 +46,8 @@ function formatDate(dateString: string): string {
 
 export default function BlogPage() {
   const [postsWP, setPostsWP] = useState<BlogPost[]>([]);
+  const [hoveredPostId, setHoveredPostId] = useState<string | null>(null); // Track hovered post ID
+
   useEffect(() => {
     const fetchData = async () => {
       const posts = await fetchBlogPosts(6);
@@ -49,8 +55,7 @@ export default function BlogPage() {
     };
     fetchData();
   }, []);
-  // Fetch blog posts directly in the component
-  const [hover, setHover] = useState(false);
+
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-4xl font-bold text-center mb-8">Blog Posts</h1>
@@ -58,13 +63,9 @@ export default function BlogPage() {
         {postsWP.map((post) => (
           <div
             key={post.id}
-            onMouseEnter={() => {
-              setHover(true);
-            }}
-            onMouseLeave={() => {
-              setHover(false);
-            }}
-            className="bg-white border  hover:cursor-pointer  border-gray-300 rounded-lg shadow-md overflow-hidden"
+            className="bg-white border hover:cursor-pointer border-gray-300 rounded-lg shadow-md overflow-hidden"
+            onMouseEnter={() => setHoveredPostId(post.id)} // Set hovered post ID
+            onMouseLeave={() => setHoveredPostId(null)} // Reset onMouseLeave
           >
             {post.featuredImageUrl && (
               <div className="relative w-full h-64">
@@ -87,8 +88,8 @@ export default function BlogPage() {
               </p>
             </div>
             <div
-              className={`h-1  bg-orange-500 ${
-                hover ? "w-full" : "w-0"
+              className={`h-1 bg-orange-500 ${
+                hoveredPostId === post.id ? "w-full" : "w-0"
               } transition-all duration-500`}
             ></div>
           </div>

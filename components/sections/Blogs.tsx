@@ -93,6 +93,7 @@ export const getStaticProps: GetStaticProps<BlogProps> = async () => {
 
 const Blogs: React.FC<BlogProps> = ({ posts }) => {
   // Check if posts are available and not empty
+
   if (!posts || posts.length === 0) {
     return (
       <section className="py-24">
