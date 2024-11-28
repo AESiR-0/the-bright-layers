@@ -46,6 +46,8 @@ type Post = {
   };
 };
 
+type BlogPost = Post;
+
 export default async function Home() {
   // Fetching data directly in the component
   const GRAPHQL_ENDPOINT = "https://thebrightlayers.com/graphql";
@@ -82,7 +84,7 @@ export default async function Home() {
         <CarouselSize />
         <Services />
         <ClientMarquee />
-        <Blogs posts={posts} /> {/* Pass posts as props */}
+        <Blogs /> {/* Pass posts as props */}
       </div>
     );
   } catch (error) {
@@ -93,7 +95,7 @@ export default async function Home() {
         <About />
         <CarouselSize />
         <Services />
-        <Blogs posts={[]} /> {/* Pass empty array if fetching fails */}
+        <Blogs /> {/* Pass empty array if fetching fails */}
       </div>
     );
   }
