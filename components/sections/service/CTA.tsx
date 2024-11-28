@@ -39,9 +39,8 @@ export default function CTA() {
             className="bg-gray-900 max-md:hidden hover:cursor-pointer text-accent hover:bg-orange-500 shadow-sm justify-center items-center gap-5 hover:shadow-xl hover:scale-[1.01] duration-500 flex flex-col ease-in transition-all w-full md:w-1/2 p-6"
           >
             <h6
-              className={`text-sm ${
-                hover ? "text-black" : "text-orange-500"
-              } text-center uppercase`}
+              className={`text-sm ${hover ? "text-black" : "text-orange-500"
+                } text-center uppercase`}
             >
               Tea or Coffee?
             </h6>
@@ -57,9 +56,8 @@ export default function CTA() {
             className="bg-black max-md:hidden hover:cursor-pointer text-accent hover:bg-orange-500 shadow-sm justify-center items-center gap-5 hover:shadow-xl hover:scale-[1.01] duration-500 flex flex-col ease-in transition-all w-full md:w-1/2 p-6"
           >
             <h6
-              className={`text-sm ${
-                hover1 ? "text-black" : "text-orange-500"
-              } text-center uppercase`}
+              className={`text-sm ${hover1 ? "text-black" : "text-orange-500"
+                } text-center uppercase`}
             >
               Who are we?
             </h6>

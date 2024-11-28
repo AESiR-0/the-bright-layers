@@ -1,98 +1,60 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { GetStaticProps } from "next";
+import { fetchBlogPosts } from "@/lib/blog-client";
 
-// GraphQL query
-const GET_BLOG_POSTS = `
-  query GetBlogPosts($first: Int!) {
-    posts(first: $first) {
-      nodes {
-        id
-        title
-        content
-        date
-        author {
-          node {
-            name
-          }
-        }
-        featuredImage {
-          node {
-            sourceUrl
-          }
-        }
-      }
-    }
-  }
-`;
+type Author = {
+  node: {
+    name: string;
+  };
+};
 
-type Post = {
+type FeaturedImage = {
+  node: {
+    sourceUrl: string;
+  };
+};
+
+type BlogPost = {
   id: string;
   title: string;
   content: string;
   date: string;
-  author: {
-    node: {
-      name: string;
-    };
-  };
-  featuredImage?: {
-    node: {
-      sourceUrl: string;
-    };
-  };
+  author: Author;
+  featuredImageUrl: FeaturedImage | null;
 };
 
-type BlogProps = {
-  posts: Post[];
-};
+function formatDate(dateString: string): string {
+  const date = new Date(dateString);
+  const day = date.getDate();
+  const month = date.toLocaleString("default", { month: "long" }).toUpperCase();
+  const year = date.getFullYear();
 
-export const getStaticProps: GetStaticProps<BlogProps> = async () => {
-  const GRAPHQL_ENDPOINT = "https://thebrightlayers.com/graphql";
+  const ordinal =
+    day % 10 === 1 && day !== 11
+      ? "ST"
+      : day % 10 === 2 && day !== 12
+        ? "ND"
+        : day % 10 === 3 && day !== 13
+          ? "RD"
+          : "TH";
 
-  try {
-    const response = await fetch(GRAPHQL_ENDPOINT, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        query: GET_BLOG_POSTS,
-        variables: { first: 3 }, // Limit to 3 posts for the blog section
-      }),
-    });
+  return `${day}${ordinal} ${month} ${year}`;
+}
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
+const Blogs = () => {
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [hoveredPostId, setHoveredPostId] = useState<string | null>(null);
 
-    const { data, errors } = await response.json();
-
-    if (errors) {
-      console.error("GraphQL errors:", errors);
-      throw new Error("Failed to fetch GraphQL data");
-    }
-
-    // Ensure that posts are fetched and exist before returning them
-    const posts = data?.posts?.nodes || []; // Default to empty array if no posts
-
-    return {
-      props: {
-        posts,
-      },
-      revalidate: 10, // Revalidate at most every 10 seconds
+  useEffect(() => {
+    const fetchData = async () => {
+      const fetchedPosts = await fetchBlogPosts(3); // Fetch only 3 posts for the preview section
+      setPosts(fetchedPosts);
     };
-  } catch (error) {
-    console.error("Error fetching blog posts:", error);
-    return {
-      notFound: true,
-    };
-  }
-};
-
-const Blogs: React.FC<BlogProps> = ({ posts }) => {
-  // Check if posts are available and not empty
+    fetchData();
+  }, []);
 
   if (!posts || posts.length === 0) {
     return (
@@ -115,41 +77,45 @@ const Blogs: React.FC<BlogProps> = ({ posts }) => {
         <h2 className="font-manrope text-4xl font-bold text-gray-900 text-center mb-16">
           Our Latest Blog
         </h2>
-        <div className="flex justify-center gap-y-8 lg:gap-y-0 flex-wrap md:flex-wrap lg:flex-nowrap lg:flex-row lg:justify-between lg:gap-x-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {posts.map((post) => (
-            <div
-              key={post.id}
-              className="group w-full px-6 max-lg:max-w-xl lg:w-1/3 border border-gray-300 rounded-2xl"
-            >
-              <div className="flex w-full items-center">
-                {post.featuredImage && (
-                  <Image
-                    src={post.featuredImage.node.sourceUrl}
-                    width={512}
-                    height={128}
-                    alt={post.title}
-                    className="rounded-t-2xl w-full"
-                  />
+            <Link href={`/blog/${post.id}`} key={post.id}>
+              <div
+                className="bg-white border hover:cursor-pointer border-gray-300 rounded-lg shadow-md overflow-hidden h-full"
+                onMouseEnter={() => setHoveredPostId(post.id)}
+                onMouseLeave={() => setHoveredPostId(null)}
+              >
+                {post.featuredImageUrl && (
+                  <div className="relative w-full h-64">
+                    <Image
+                      src={post.featuredImageUrl.node.sourceUrl}
+                      alt={post.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
                 )}
-              </div>
-              <div className="block">
-                <h4 className="text-gray-900 font-medium leading-8 mb-9">
-                  {post.title}
-                </h4>
-                <div className="flex items-center justify-between font-medium">
-                  <h6 className="text-sm text-gray-500">
+                <div className="p-6">
+                  <h2 className="text-2xl font-semibold mb-2 text-gray-900">
+                    {post.title}
+                  </h2>
+                  <p className="text-sm text-gray-500 mb-4">
+                    {formatDate(post.date)}
+                  </p>
+                  <p className="text-sm text-right text-gray-500">
                     By {post.author.node.name}
-                  </h6>
-                  <span className="text-sm text-indigo-600">
-                    {new Date(post.date).toLocaleDateString()}
-                  </span>
+                  </p>
                 </div>
+                <div
+                  className={`h-1 bg-orange-500 ${hoveredPostId === post.id ? "w-full" : "w-0"
+                    } transition-all duration-500`}
+                />
               </div>
-            </div>
+            </Link>
           ))}
         </div>
         <Link
-          href="/blogs"
+          href="/blog"
           className="cursor-pointer border mt-10 border-gray-300 shadow-sm rounded-full py-3.5 px-7 w-52 flex justify-center items-center text-gray-900 font-semibold mx-auto transition-all duration-300 hover:bg-gray-100"
         >
           View All

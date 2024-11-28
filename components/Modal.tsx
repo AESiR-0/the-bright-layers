@@ -96,7 +96,7 @@ export function ModalButton({ text, data }: { text: string; data: obj }) {
         }}
         className="px-4 py-2 bg-primary text-white rounded-md hover:bg-orange-500 transition-all"
       >
-        <span className="flex items-center gap-1 hover:text-orange-500 hover:gap-2 transition-all">
+        <span className="flex items-center gap-1  hover:gap-2 transition-all">
           {text}
           <svg
             xmlns="http://www.w3.org/2000/svg"

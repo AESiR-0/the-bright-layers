@@ -1,5 +1,7 @@
+"use client";
 import React from "react";
 import Image from "next/image";
+import { Fade, Slide } from "react-awesome-reveal";
 import {
   Accordion,
   AccordionContent,
@@ -7,11 +9,10 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-import vercel from "@/public/vercel.svg";
-
 interface AccordionItemProps {
   title: string;
   content: string;
+  index: number;
 }
 
 const contentJson = [
@@ -42,52 +43,87 @@ const contentJson = [
   },
 ];
 
-const AccordionSet = ({ title, content }: AccordionItemProps) => {
+const AccordionSet = ({ title, content, index }: AccordionItemProps) => {
   return (
-    <div className="border-b border-gray-300 w-full my-5">
-      <Accordion type="single" collapsible>
-        <AccordionItem value="item-1">
-          <AccordionTrigger>{title}</AccordionTrigger>
-          <AccordionContent>{content}</AccordionContent>
-        </AccordionItem>
-      </Accordion>
-    </div>
+    <Fade delay={index * 100} triggerOnce>
+      <div className="border-b border-gray-200 w-full">
+        <Accordion type="single" collapsible>
+          <AccordionItem value="item-1" className="border-none">
+            <AccordionTrigger className="hover:no-underline py-6">
+              <div className="flex items-start gap-6 text-left">
+                <span className="text-sm font-medium text-orange-500 mt-1">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <h3 className="text-xl font-medium text-gray-900">{title}</h3>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent className="text-gray-600 leading-relaxed pl-12">
+              {content}
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </div>
+    </Fade>
   );
 };
 
 const AccordionMain: React.FC = () => {
   return (
-    <section className="container py-20 flex gap-10 justify-center flex-col lg:flex-row">
-      {/* FAQ Section */}
-      <div className="w-full lg:w-[55%] flex flex-col justify-center items-start">
-        <h2 className="text-4xl w-full sm:text-left  lg:text-6xl font-serif mb-4 text-center">
-          FAQs
-        </h2>
-        <p className="text-lg mb-4 text-center lg:text-left">
-          If we haven't covered something here, feel free to shoot us an email
-          with your query!
-        </p>
-        <div className="border-t w-full border-gray-300">
-          {contentJson.map((item, index) => {
-            return (
-              <AccordionSet
-                key={index}
-                title={item.title}
-                content={item.content}
-              />
-            );
-          })}
-        </div>
-      </div>
+    <section className="bg-gradient-to-b from-white to-gray-50 py-24">
+      <div className="container mx-auto px-4 max-w-7xl">
+        <div className="flex flex-col lg:flex-row gap-16 items-start">
+          {/* FAQ Content */}
+          <div className="w-full lg:w-[60%]">
+            <Fade triggerOnce>
+              <div className="space-y-4 mb-12">
+                <span className="text-orange-500 font-medium">FAQ</span>
+                <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+                  Frequently Asked{" "}
+                  <span className="text-gradient">Questions</span>
+                </h2>
+                <p className="text-gray-600 max-w-2xl">
+                  If we haven't covered something here, feel free to shoot us an email
+                  with your query!
+                </p>
+              </div>
+            </Fade>
 
-      {/* Image Section */}
-      <div className="w-full max-md:hidden lg:w-1/3 h-full flex justify-center items-center">
-        <Image
-          alt="Image"
-          src={vercel}
-          layout="intrinsic"
-          className="w-full max-w-[300px] lg:max-w-none object-cover"
-        />
+            <div className="space-y-2">
+              {contentJson.map((item, index) => (
+                <AccordionSet
+                  key={index}
+                  index={index}
+                  title={item.title}
+                  content={item.content}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Image Section */}
+          <Slide direction="right" triggerOnce className="w-full lg:w-[40%] sticky top-24">
+            <div className="relative">
+              <div className="relative h-[600px] w-full rounded-2xl overflow-hidden bg-gradient-to-br from-orange-100 to-orange-50">
+                <Image
+                  src="/images/faq-illustration.jpg" // Add your image
+                  alt="FAQ Illustration"
+                  fill
+                  className="object-cover mix-blend-overlay"
+                />
+              </div>
+              {/* Decorative Elements */}
+              <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-orange-100 rounded-full -z-10" />
+              <div className="absolute -top-4 -right-4 w-32 h-32 bg-gray-100 rounded-full -z-10" />
+            </div>
+          </Slide>
+        </div>
+
+        {/* Bottom Accent */}
+        <div className="flex justify-center gap-3 pt-16">
+          <div className="h-2 w-2 rounded-full bg-orange-500 animate-pulse" />
+          <div className="h-2 w-2 rounded-full bg-orange-400 animate-pulse delay-100" />
+          <div className="h-2 w-2 rounded-full bg-orange-300 animate-pulse delay-200" />
+        </div>
       </div>
     </section>
   );

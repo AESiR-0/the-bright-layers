@@ -1,7 +1,6 @@
 import type { Config } from "tailwindcss";
 
 const config = {
-  darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
@@ -33,8 +32,14 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       fontFamily: {
-        quicksand: ["Quicksand", "sans-serif"],
-        womby : ["Womby", "Helvetica-Nue", "Helvetica", "Arial", "sans-serif"],
+        garet: ['var(--font-garet)', 'sans-serif'],
+        manrope: ['var(--font-manrope)', 'sans-serif'],
+        outfit: ['var(--font-outfit)', 'sans-serif'],
+        grotesk: ['var(--font-space-grotesk)', 'sans-serif'],
+        inter: ['var(--font-inter)', 'sans-serif'],
+        poppins: ['var(--font-poppins)', 'sans-serif'],
+
+
       },
       colors: {
         primary: "#2C3E50",
@@ -46,7 +51,7 @@ const config = {
         accent: "#FFFFFF",
       },
       backgroundImage: {
-        bg : "url('/static/home/bg.jpg')",
+        bg: "url('/static/home/bg.jpg')",
       }
     },
   },

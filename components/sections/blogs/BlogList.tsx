@@ -3,6 +3,7 @@
 import { fetchBlogPosts } from "@/lib/blog-client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 type Author = {
   node: {
@@ -36,10 +37,10 @@ function formatDate(dateString: string): string {
     day % 10 === 1 && day !== 11
       ? "ST"
       : day % 10 === 2 && day !== 12
-      ? "ND"
-      : day % 10 === 3 && day !== 13
-      ? "RD"
-      : "TH";
+        ? "ND"
+        : day % 10 === 3 && day !== 13
+          ? "RD"
+          : "TH";
 
   return `${day}${ordinal} ${month} ${year}`;
 }
@@ -61,38 +62,40 @@ export default function BlogPage() {
       <h1 className="text-4xl font-bold text-center mb-8">Blog Posts</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {postsWP.map((post) => (
-          <div
-            key={post.id}
-            className="bg-white border hover:cursor-pointer border-gray-300 rounded-lg shadow-md overflow-hidden"
-            onMouseEnter={() => setHoveredPostId(post.id)} // Set hovered post ID
-            onMouseLeave={() => setHoveredPostId(null)} // Reset onMouseLeave
-          >
-            {post.featuredImageUrl && (
-              <div className="relative w-full h-64">
-                <Image
-                  src={post.featuredImageUrl.node.sourceUrl}
-                  alt={post.title}
-                  layout="fill"
-                  objectFit="cover"
-                  className="absolute inset-0"
-                />
-              </div>
-            )}
-            <div className="p-4">
-              <h2 className="text-2xl font-semibold mb-2">{post.title}</h2>
-              <p className="text-sm text-gray-500 mb-2">
-                {formatDate(post.date)}
-              </p>
-              <p className="text-sm text-right text-gray-500 mt-2">
-                By {post.author.node.name}
-              </p>
-            </div>
+          <Link href={`/blog/${post.id}`}>
             <div
-              className={`h-1 bg-orange-500 ${
-                hoveredPostId === post.id ? "w-full" : "w-0"
-              } transition-all duration-500`}
-            ></div>
-          </div>
+
+              key={post.id}
+              className="bg-white border hover:cursor-pointer border-gray-300 rounded-lg shadow-md overflow-hidden"
+              onMouseEnter={() => setHoveredPostId(post.id)} // Set hovered post ID
+              onMouseLeave={() => setHoveredPostId(null)} // Reset onMouseLeave
+            >
+              {post.featuredImageUrl && (
+                <div className="relative w-full h-64">
+                  <Image
+                    src={post.featuredImageUrl.node.sourceUrl}
+                    alt={post.title}
+                    layout="fill"
+                    objectFit="cover"
+                    className="absolute inset-0"
+                  />
+                </div>
+              )}
+              <div className="p-4">
+                <h2 className="text-2xl font-semibold mb-2">{post.title}</h2>
+                <p className="text-sm text-gray-500 mb-2">
+                  {formatDate(post.date)}
+                </p>
+                <p className="text-sm text-right text-gray-500 mt-2">
+                  By {post.author.node.name}
+                </p>
+              </div>
+              <div
+                className={`h-1 bg-orange-500 ${hoveredPostId === post.id ? "w-full" : "w-0"
+                  } transition-all duration-500`}
+              ></div>
+            </div>
+          </Link>
         ))}
       </div>
     </div>
