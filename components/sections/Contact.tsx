@@ -27,7 +27,7 @@ const ContactForm: React.FC = () => {
         Contact
       </p>
       <h3 className="text-3xl sm:text-4xl leading-normal font-extrabold tracking-tight text-gray-900">
-        Get In <span className="text-accent">Touch</span>
+        Get In <span className="text-secondary">Touch</span>
       </h3>
   </div>
   
@@ -37,8 +37,8 @@ const ContactForm: React.FC = () => {
       <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
         First Name
       </label>
-      <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Jane" />
-      <p className="text-red-500 text-xs italic">Please fill out this field.</p>
+      <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-orange-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Jane" />
+      <p className="text-orange-500 text-xs italic">Please fill out this field.</p>
     </div>
     <div className="w-full md:w-1/2 px-3">
       <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
@@ -74,7 +74,7 @@ const ContactForm: React.FC = () => {
           </span>
         </label>
       </div>
-      <button className="shadow bg-accent hover:bg-orange-600 transition-all hover:scale-105 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-6 rounded" type="submit">
+      <button className="shadow mt-2 bg-secondary hover:text-secondary hover:bg-white transition-all hover:scale-x-95 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-6 rounded" type="submit">
         Send Message
       </button>
     </div>

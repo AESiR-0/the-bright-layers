@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import logo from "@/public/static/logo/logo.png";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
@@ -36,64 +36,102 @@ interface nav {
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathName = usePathname();
-  console.log(pathName);
 
   return (
     <>
-      <div className="w-screen items-center flex justify-between overflow-hidden px-5 md:px-20 h-20 bg-secondary">
-        <div className="flex items-center justify-between w-full md:w-auto">
-          <Image
-            alt="The Bright Layers Logo"
-            src={logo}
-            width={64}
-            height={64}
-          />
-          <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
+      <div className="w-screen flex items-center justify-between px-5 md:px-20 h-28 bg-secondary">
+        {/* Logo */}
+        <div className="flex   max-md:relative max-md:justify-center   items-center justify-between w-full md:w-auto">
+          <div className="flex-col justify-center items-center flex gap-1">
+            <Image
+              alt="The Bright Layers Logo"
+              src={logo}
+              width={64}
+              height={64}
+            />
+            <h1 className="text-white font-quicksand text-lg">
+              The Bright Layers
+            </h1>
+          </div>
+          {/* Hamburger Button (Mobile View) */}
+          .
+          <button
+            className="md:hidden text-white absolute right-2 z-50"
+            onClick={() => setIsOpen(!isOpen)} // Toggle the menu on click
+          >
+            {/* Hamburger Icon */}
+            <div
+              className={`w-6 h-0.5 bg-white mb-2 transition-all duration-300 transform ${
+                isOpen ? "rotate-45 translate-y-1.5" : ""
+              }`}
+            ></div>
+            <div
+              className={`w-6 h-0.5 bg-white mb-2 transition-all duration-300 transform ${
+                isOpen ? "opacity-0" : ""
+              }`}
+            ></div>
+            <div
+              className={`w-6 h-0.5 bg-white transition-all duration-300 transform ${
+                isOpen ? "-rotate-45 -translate-y-1.5" : ""
+              }`}
+            ></div>
+          </button>
+        </div>
+
+        {/* Mobile Menu (hidden on medium and larger screens) */}
+        <div
+          className={`fixed top-0 left-0 w-full h-screen bg-secondary z-50 transition-transform duration-500 ease-in-out transform ${
+            isOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          {/* Close Icon (X) */}
+          <button
+            className="absolute top-16 right-5 md:hidden text-white z-50"
+            onClick={() => setIsOpen(false)} // Close the menu when clicked
+          >
             <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              className="w-8 h-8"
             >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d="M4 6h16M4 12h16m-7 6h7"
+                d="M6 18L18 6M6 6l12 12"
               />
             </svg>
           </button>
-          {isOpen && (
-            <div className="bg-secondary fixed flex flex-col justify-center items-center overflow-hidden top-0 left-0 z-50">
-              {navItems.map((item: nav, index: number) => {
-                return (
-                  <Link
-                    key={index}
-                    className={`group transition-all ${
-                      item.link === pathName ? "text-accent" : "text-white"
-                    }`}
-                    href={item.link}
-                  >
-                    {item.title}
-                    <div className="bg-white scale-x-0 h-[2px] w-full group-hover:scale-x-100 transition-all duration-300"></div>
-                  </Link>
-                );
-              })}
-            </div>
-          )}
+
+          <div className="flex flex-col items-center justify-center h-full gap-6">
+            {navItems.map((item: nav, index: number) => {
+              return (
+                <Link
+                  key={index}
+                  className={`group py-3 px-4 text-lg text-white transition-all ${
+                    item.link === pathName ? "text-orange-500" : "text-white"
+                  }`}
+                  href={item.link}
+                  onClick={() => setIsOpen(false)} // Close menu when link is clicked
+                >
+                  {item.title}
+                  <div className="bg-orange-500 scale-x-0 h-[2px] w-full group-hover:scale-x-100 transition-all duration-300"></div>
+                </Link>
+              );
+            })}
+          </div>
         </div>
-        <div
-          className={`hidden md:flex-row md:flex font-sans text-lg text-secondary gap-10 ${
-            isOpen ? "flex" : "hidden"
-          } md:flex`}
-        >
+
+        {/* Desktop Menu (hidden on small screens) */}
+        <div className="hidden md:flex md:flex-row font-sans text-lg text-secondary gap-10 items-center">
           {navItems.map((item: nav, index: number) => {
             return (
               <Link
                 key={index}
-                className={`group transition-all  ${
-                  item.link === pathName ? "text-accent" : "text-white"
+                className={`group transition-all ${
+                  item.link === pathName ? "text-orange-500" : "text-white"
                 }`}
                 href={item.link}
               >
@@ -101,9 +139,9 @@ export default function Navbar() {
                 <div
                   className={`${
                     item.link === pathName
-                      ? "bg-accent scale-x-100 group-hover:scale-x-0 "
-                      : "scale-x-0 group-hover:scale-x-100 bg-white  "
-                  }  h-[2px] w-full  transition-all duration-300`}
+                      ? "bg-orange-500 scale-x-100 group-hover:scale-x-0"
+                      : "scale-x-0 group-hover:scale-x-100 bg-white"
+                  } h-[2px] w-full transition-all duration-300`}
                 ></div>
               </Link>
             );

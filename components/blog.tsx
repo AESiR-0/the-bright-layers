@@ -74,12 +74,9 @@ export const getStaticProps: GetStaticProps<BlogProps> = async () => {
       throw new Error("Failed to fetch GraphQL data");
     }
 
-    // Ensure that posts are fetched and exist before returning them
-    const posts = data?.posts?.nodes || []; // Default to empty array if no posts
-
     return {
       props: {
-        posts,
+        posts: data.posts.nodes,
       },
       revalidate: 10, // Revalidate at most every 10 seconds
     };
@@ -92,23 +89,6 @@ export const getStaticProps: GetStaticProps<BlogProps> = async () => {
 };
 
 const Blogs: React.FC<BlogProps> = ({ posts }) => {
-  // Check if posts are available and not empty
-
-  if (!posts || posts.length === 0) {
-    return (
-      <section className="py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="font-manrope text-4xl font-bold text-gray-900 text-center mb-16">
-            Our Latest Blog
-          </h2>
-          <p className="text-center text-gray-500">
-            No blog posts available at the moment.
-          </p>
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section className="py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

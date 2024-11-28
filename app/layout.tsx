@@ -7,14 +7,15 @@ import Footer from "@/components/sections/Footer";
 
 
 const garet = localFont({
-  src:[
-   { path:'./fonts/Garet-Book.otf',
-    weight:'300',
- }   ,
- {
-  path:'./fonts/Garet-Heavy.otf',
-  weight:'600'
- }
+  src: [
+    {
+      path: './fonts/Garet-Book.otf',
+      weight: '300',
+    },
+    {
+      path: './fonts/Garet-Heavy.otf',
+      weight: '600'
+    }
   ]
 }
 )
@@ -31,17 +32,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={garet.className}>
-      <Banner />
-      <Navbar />
-      <div className="overflow-x-hidden">
-        {children}
-      </div>
-        </body>
-        <footer>
+        <Banner />
+        <Navbar />
+        <div className="overflow-x-hidden">
+          {children}
+        </div>
         <Footer />
-        </footer>
-          
-        
+      </body>
     </html>
   );
 }

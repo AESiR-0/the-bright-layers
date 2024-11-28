@@ -7,8 +7,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-import vercel from "@/public/vercel.svg";
-
 interface AccordionItemProps {
   title: string;
   content: string;
@@ -37,8 +35,8 @@ const AccordionSet = ({ title, content }: AccordionItemProps) => {
     <div className="border-b border-gray-300 w-full my-5">
       <Accordion type="single" collapsible>
         <AccordionItem value="item-1">
-          <AccordionTrigger>{title}</AccordionTrigger>
-          <AccordionContent>{content}</AccordionContent>
+          <AccordionTrigger className="text-lg font-semibold">{title}</AccordionTrigger>
+          <AccordionContent className="text-gray-700">{content}</AccordionContent>
         </AccordionItem>
       </Accordion>
     </div>
@@ -47,13 +45,13 @@ const AccordionSet = ({ title, content }: AccordionItemProps) => {
 
 const WhyUs: React.FC = () => {
   return (
-    <section className="container h-screen py-20 flex gap-10 justify-center">
-      <div className="w-full px-10 text-center  flex flex-col justify-center items-start ">
-        <h2 className="text-5xl w-full   text-center font-serif mb-4 ">
-          Interested? Curious? Here's How It Works.{" "}
+    <section className="container py-10 md:py-20 flex flex-col md:flex-row gap-10 justify-center">
+      <div className="w-full md:w-3/4 px-5 md:px-10 text-left md:text-left flex flex-col justify-center items-start">
+        <h2 className="text-3xl md:text-5xl text-center font-serif mb-4">
+          Interested? Curious? Here's How It Works.
         </h2>
 
-        <div className="border-t w-full border-gray-300">
+        <div className="border-t w-full border-gray-300 mt-8">
           {contentJson.map((item, index) => {
             return (
               <AccordionSet
@@ -64,6 +62,11 @@ const WhyUs: React.FC = () => {
             );
           })}
         </div>
+      </div>
+
+      {/* Optional Image section for wider screens */}
+      <div className="max-md:hidden md:block md:w-1/4 flex justify-center items-center">
+        <Image src="/path/to/your/image.jpg" alt="Your image" width={400} height={400} />
       </div>
     </section>
   );
